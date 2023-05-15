@@ -1,0 +1,12 @@
+C:\флешка\ООП\Курсовая\XirYzaidimas\bin\Debug\TicTacToe.exe.config
+C:\флешка\ООП\Курсовая\XirYzaidimas\bin\Debug\TicTacToe.exe
+C:\флешка\ООП\Курсовая\XirYzaidimas\bin\Debug\TicTacToe.pdb
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.csproj.AssemblyReference.cache
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.csproj.SuggestedBindingRedirects.cache
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.Form1.resources
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.Start.resources
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.csproj.GenerateResource.cache
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.csproj.CoreCompileInputs.cache
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.exe
+C:\флешка\ООП\Курсовая\XirYzaidimas\obj\Debug\TicTacToe.pdb
