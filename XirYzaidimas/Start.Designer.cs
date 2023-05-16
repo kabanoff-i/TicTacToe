@@ -42,19 +42,18 @@
             this.checkBoxForX.AutoSize = true;
             this.checkBoxForX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxForX.Location = new System.Drawing.Point(36, 119);
-            this.checkBoxForX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxForX.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxForX.Name = "checkBoxForX";
             this.checkBoxForX.Size = new System.Drawing.Size(33, 17);
             this.checkBoxForX.TabIndex = 0;
             this.checkBoxForX.Text = "X";
             this.checkBoxForX.UseVisualStyleBackColor = true;
-            this.checkBoxForX.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBoxFor0
             // 
             this.checkBoxFor0.AutoSize = true;
             this.checkBoxFor0.Location = new System.Drawing.Point(101, 119);
-            this.checkBoxFor0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxFor0.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxFor0.Name = "checkBoxFor0";
             this.checkBoxFor0.Size = new System.Drawing.Size(32, 17);
             this.checkBoxFor0.TabIndex = 1;
@@ -64,7 +63,7 @@
             // textBoxX
             // 
             this.textBoxX.Location = new System.Drawing.Point(22, 68);
-            this.textBoxX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxX.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxX.Multiline = true;
             this.textBoxX.Name = "textBoxX";
             this.textBoxX.Size = new System.Drawing.Size(53, 32);
@@ -73,7 +72,7 @@
             // textBoxY
             // 
             this.textBoxY.Location = new System.Drawing.Point(101, 68);
-            this.textBoxY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxY.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxY.Multiline = true;
             this.textBoxY.Name = "textBoxY";
             this.textBoxY.Size = new System.Drawing.Size(55, 32);
@@ -93,7 +92,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(32, 160);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 34);
             this.button1.TabIndex = 5;
@@ -125,7 +124,7 @@
             this.Controls.Add(this.textBoxX);
             this.Controls.Add(this.checkBoxFor0);
             this.Controls.Add(this.checkBoxForX);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Start";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";

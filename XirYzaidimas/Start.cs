@@ -20,34 +20,27 @@ namespace TicTacToe
             InitializeComponent();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBoxX.Text != null && textBoxY.Text != null
-                && !string.IsNullOrWhiteSpace(textBoxX.Text)
-                && !string.IsNullOrWhiteSpace(textBoxY.Text))
+            if (!string.IsNullOrWhiteSpace(textBoxX.Text) && !string.IsNullOrWhiteSpace(textBoxY.Text))
             {  
             SetValueForX = Convert.ToInt32(textBoxX.Text);
             SetValueForY = Convert.ToInt32(textBoxY.Text);
                 if (SetValueForX == SetValueForY)
                 {
-                    Start start = new Start();
-                    if(checkBoxForX.Checked)
+                    if(checkBoxForX.Checked && !checkBoxFor0.Checked)
                     {
-                
+                        Start start = new Start();
                         Form1 frm1 = new Form1(SetValueForX, SetValueForY, checkBoxForX.Text);
                         this.Hide();
 
                         frm1.Closed += (s, args) => this.Close();
 
                         frm1.Show();
-                    }
-                    if (checkBoxFor0.Checked)
+                    }else
+                    if (checkBoxFor0.Checked && !checkBoxForX.Checked)
                     {
-                 
+
                         Form1 frm1 = new Form1(SetValueForX, SetValueForY, checkBoxFor0.Text);
                         this.Hide();
 
@@ -55,13 +48,12 @@ namespace TicTacToe
 
                         frm1.Show();
                     }
-
-         
+                    else
+                        MessageBox.Show("Choose your turn correctly");
                 }
                 else
                 {
-                    MessageBox.Show("We can't create Tic-Tac-Toe game for " +
-                    SetValueForX + "x" + SetValueForY + " table X-O");
+                    MessageBox.Show("We can't create Tic-Tac-Toe game for " + SetValueForX + "x" + SetValueForY + " table X-O");
                 }
             }
             else
