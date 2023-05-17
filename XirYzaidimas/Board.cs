@@ -16,7 +16,10 @@ namespace TicTacToe
         public event CheckEventHandler Check;
 
         Form1 form;
-        private void OnCheck()
+        IPlayer player1;
+        IPlayer player2;
+
+        public void OnCheck()
         {
             GameStatus gameStatus = new GameStatus(this, form);
             if (Check != null)
@@ -53,6 +56,9 @@ namespace TicTacToe
             this.form = form;
             button = new Button[X, Y];
             step = Xor0Start;
+
+            player1 = new HumanPlayer(this);
+            player2 = new HumanPlayer(this);
 
             int uniqueTag = 0; // для присвоения уникального кода
             for (int i = 0; i < X; i++)
