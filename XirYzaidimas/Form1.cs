@@ -13,10 +13,10 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         Board board;
-        public Form1(int X, int Y, string Xor0Start) 
+        public Form1(int size, string Xor0Start, bool IsCompPlayer) 
         {
             InitializeComponent();
-            board = new Board(X, Y, Xor0Start, panel1, this);
+            board = new Board(size, Xor0Start, IsCompPlayer, panel1, this);
         }
 
     }

@@ -33,6 +33,7 @@ namespace TicTacToe
 
                 }
             }
+            board.IsWinner = true;
             DialogResult result = MessageBox.Show(Xor0 + " Выиграл. Сыграть заново?", "", MessageBoxButtons.YesNo);
 
             if (Convert.ToString(result) == "Yes")
@@ -142,6 +143,7 @@ namespace TicTacToe
 
             if (board.stepsDone == board.button.Length)
             {
+                board.IsWinner = true;
                 DialogResult result = MessageBox.Show("Ничья. Сыграть заново?", "", MessageBoxButtons.YesNo);
 
                 if (Convert.ToString(result) == "Yes")

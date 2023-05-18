@@ -13,8 +13,7 @@ namespace TicTacToe
     public partial class Start : Form
     {
 
-        public static int SetValueForX;
-        public static int SetValueForY;
+        public static int size;
         public Start()
         {
             InitializeComponent();
@@ -22,43 +21,35 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBoxX.Text) && !string.IsNullOrWhiteSpace(textBoxY.Text))
+            if (!string.IsNullOrWhiteSpace(textBoxSize.Text))
             {  
-            SetValueForX = Convert.ToInt32(textBoxX.Text);
-            SetValueForY = Convert.ToInt32(textBoxY.Text);
-                if (SetValueForX == SetValueForY)
+                size = Convert.ToInt32(textBoxSize.Text);
+                if(radioButtonX.Checked)
                 {
-                    if(checkBoxForX.Checked && !checkBoxFor0.Checked)
-                    {
-                        Start start = new Start();
-                        Form1 frm1 = new Form1(SetValueForX, SetValueForY, checkBoxForX.Text);
-                        this.Hide();
+                    Start start = new Start();
+                    Form1 frm1 = new Form1(size, "X", checkBoxCompPlayer.Checked);
+                    this.Hide();
 
-                        frm1.Closed += (s, args) => this.Close();
+                    frm1.Closed += (s, args) => this.Close();
 
-                        frm1.Show();
-                    }else
-                    if (checkBoxFor0.Checked && !checkBoxForX.Checked)
-                    {
+                    frm1.Show();
+                }else
+                if (radioButtonY.Checked)
+                {
 
-                        Form1 frm1 = new Form1(SetValueForX, SetValueForY, checkBoxFor0.Text);
-                        this.Hide();
+                    Form1 frm1 = new Form1(size, "O", checkBoxCompPlayer.Checked);
+                    this.Hide();
 
-                        frm1.Closed += (s, args) => this.Close();
+                    frm1.Closed += (s, args) => this.Close();
 
-                        frm1.Show();
-                    }
-                    else
-                        MessageBox.Show("Choose your turn correctly");
+                    frm1.Show();
                 }
                 else
-                {
-                    MessageBox.Show("We can't create Tic-Tac-Toe game for " + SetValueForX + "x" + SetValueForY + " table X-O");
-                }
+                    MessageBox.Show("Выберите сторону");
             }
             else
             {
-                MessageBox.Show("Fill Values");
+                MessageBox.Show("Заполните размер поля");
             }
         }
     }

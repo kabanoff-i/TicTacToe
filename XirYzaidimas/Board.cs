@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,8 +17,9 @@ namespace TicTacToe
         public event CheckEventHandler Check;
 
         Form1 form;
-        IPlayer player1;
-        IPlayer player2;
+        ComputerPlayer player;
+        bool IsCompPlayer;
+        public bool IsWinner;
 
         public void OnCheck()
         {
@@ -39,7 +41,7 @@ namespace TicTacToe
                 // Поменять ход
                 if (step == "X")
                 {
-                    step = "0";
+                    step = "O";
                 }
                 else
                 {
@@ -49,33 +51,40 @@ namespace TicTacToe
             }
             else
                 MessageBox.Show("Выберите свободное поле");
+            if (IsCompPlayer && !IsWinner)
+            {
+                Thread.Sleep(100);
+                player.MakeAMove();
+            }
         }
 
-        public Board(int X, int Y, string Xor0Start, Panel panel1, Form1 form)
+        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form)
         {
             this.form = form;
-            button = new Button[X, Y];
+            button = new Button[size, size];
             step = Xor0Start;
+            this.IsCompPlayer = IsCompPlayer;
 
-            player1 = new HumanPlayer(this);
-            player2 = new HumanPlayer(this);
+            if (IsCompPlayer)
+                player = new ComputerPlayer(this);
+            IsWinner = false;
 
             int uniqueTag = 0; // для присвоения уникального кода
-            for (int i = 0; i < X; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < Y; j++)
+                for (int j = 0; j < size; j++)
                 {
                     button[i, j] = new Button(); // каждая кнопка инициализируется
                     button[i, j].Parent = panel1; // Рендеринг
-                    button[i, j].Width = panel1.Width / X; // настройки рендеринга
-                    button[i, j].Height = panel1.Height / X;
+                    button[i, j].Width = panel1.Width / size; // настройки рендеринга
+                    button[i, j].Height = panel1.Height / size;
 
-                    button[i, j].Top = j * panel1.Height / X; // кнопки на 100% ширины окна
-                    button[i, j].Left = i * panel1.Width / X;
+                    button[i, j].Top = j * panel1.Height / size; // кнопки на 100% ширины окна
+                    button[i, j].Left = i * panel1.Width / size;
                     button[i, j].Click += new EventHandler(OnClick);// добавление обработчика события
                     button[i, j].Tag = uniqueTag; // присвоение каждому уникального кода
 
-                    button[i, j].Font = new Font(button[i, j].Font.FontFamily, 22, FontStyle.Bold);
+                    button[i, j].Font = new Font(button[i, j].Font.FontFamily, button[i,j].Width/2, FontStyle.Bold);
 
                     uniqueTag++;
                 }

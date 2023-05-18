@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    internal interface IPlayer
+    interface IPlayer
     {
+        void MakeAMove();
     }
 }
