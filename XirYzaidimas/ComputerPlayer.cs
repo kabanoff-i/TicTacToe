@@ -13,7 +13,6 @@ namespace TicTacToe
         Board board;
         public void MakeAMove()
         {
-            //Thread.Sleep(500);
             Random r = new Random();
             int row;
             int column;

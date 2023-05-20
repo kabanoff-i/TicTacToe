@@ -8,11 +8,9 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
-    public class GameStatus: IGameStatus
+    public class GameStatusTime: GameStatus
     {
-        protected Board board;
-        protected Form1 form;
-        public void Win(string Xor0)
+        new public void Win(string Xor0)
         {
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
@@ -49,7 +47,7 @@ namespace TicTacToe
             }
         }
 
-        public void CheckerRow(int j, string Xor0)
+        new public void CheckerRow(int j, string Xor0)
         {
             int num = 0;
 
@@ -72,7 +70,7 @@ namespace TicTacToe
             }
         }
 
-        public void CheckerColumn(int j, string Xor0)
+        new public void CheckerColumn(int j, string Xor0)
         {
             int num = 0;
             bool flag = true;
@@ -95,7 +93,7 @@ namespace TicTacToe
 
         }
 
-        public void CheckerDiagonalLeftToRight(string Xor0)
+        new public void CheckerDiagonalLeftToRight(string Xor0)
         {
             int num = 0;
             for (int i = 0; i < board.button.GetLength(0); i++)
@@ -110,7 +108,7 @@ namespace TicTacToe
             }
         }
 
-        public void CheckerDiagonalRightToLeft(string Xor0)
+        new public void CheckerDiagonalRightToLeft(string Xor0)
         {
             int num = 0;
             for (int i = 0; i < board.button.GetLength(0); i++)
@@ -125,7 +123,7 @@ namespace TicTacToe
             }
 
         }
-        public void Checker()
+        new public void Checker()
         {
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
@@ -159,15 +157,7 @@ namespace TicTacToe
                 }
             }
         }
-        public void On()
-        {
-            board.Check += new CheckEventHandler(Checker);
-        }
-        public void Of()
-        {
-            board.Check -= new CheckEventHandler(Checker);
-        }
-        public GameStatus(Board board, Form1 form)
+        public GameStatusTime(Board board, Form1 form): base(board, form)
         {
             this.form = form;
             this.board = board;

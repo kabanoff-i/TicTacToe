@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="GameStatus.cs" />
     <Compile Include="ComputerPlayer.cs" />
+    <Compile Include="GameStatusTime.cs" />
     <Compile Include="IGameStatus.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="Start.cs">

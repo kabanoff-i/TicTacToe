@@ -20,15 +20,34 @@ namespace TicTacToe
         ComputerPlayer player;
         bool IsCompPlayer;
         public bool IsWinner;
+        int Mode;
+        GameStatusTime gameStatusTime;
 
         public void OnCheck()
         {
-            GameStatus gameStatus = new GameStatus(this, form);
+            if (Mode == 0)
+            {
+                GameStatus gameStatus = new GameStatus(this, form);
+                if (Check != null)
+                {
+                    Check();
+                    gameStatus.Of();
+                }
+            }
+            else
             if (Check != null)
             {
                 Check();
-                gameStatus.Of();
+                GameStatus gameStatusTime = new GameStatusTime(this, form);
+                gameStatusTime.Of();
             }
+            //gameStatusTime = new GameStatusTime(this, form);
+            //if (Check != null)
+            //   {
+            //    Check();
+            //    gameStatusTime.Of();
+            //}
+
         }
         void OnClick(object sender, EventArgs e)
         {
@@ -48,22 +67,22 @@ namespace TicTacToe
                     step = "X";
                 }
                 OnCheck();// зажигаю событие проверки
+                if (IsCompPlayer && !IsWinner)
+                {
+                    player.MakeAMove();
+                }
             }
             else
                 MessageBox.Show("Выберите свободное поле");
-            if (IsCompPlayer && !IsWinner)
-            {
-                Thread.Sleep(100);
-                player.MakeAMove();
-            }
         }
 
-        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form)
+        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode)
         {
             this.form = form;
             button = new Button[size, size];
             step = Xor0Start;
             this.IsCompPlayer = IsCompPlayer;
+            Mode = gamemode;
 
             if (IsCompPlayer)
                 player = new ComputerPlayer(this);
