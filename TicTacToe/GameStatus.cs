@@ -28,7 +28,7 @@ namespace TicTacToe
                     }
                     if (board.button[i, j].Text == "")
                     {
-                        board.button[i, j].BackColor = Color.FromArgb(0, 0, 0);
+                        board.button[i, j].BackColor = Color.FromArgb(200, 200, 200);
                     }
 
                 }
@@ -130,16 +130,16 @@ namespace TicTacToe
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
                 CheckerRow(i, "X");
-                CheckerRow(i, "0");
+                CheckerRow(i, "O");
 
                 CheckerColumn(i, "X");
-                CheckerColumn(i, "0");
+                CheckerColumn(i, "O");
             }
             CheckerDiagonalLeftToRight("X");
-            CheckerDiagonalLeftToRight("0");
+            CheckerDiagonalLeftToRight("O");
 
             CheckerDiagonalRightToLeft("X");
-            CheckerDiagonalRightToLeft("0");
+            CheckerDiagonalRightToLeft("O");
 
             if (board.stepsDone == board.button.Length)
             {

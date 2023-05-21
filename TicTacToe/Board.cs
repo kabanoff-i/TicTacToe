@@ -21,6 +21,7 @@ namespace TicTacToe
         bool IsCompPlayer;
         public bool IsWinner;
         int Mode;
+        int length;
         GameStatusTime gameStatusTime;
 
         public void OnCheck()
@@ -35,19 +36,11 @@ namespace TicTacToe
                 }
             }
             else
-            if (Check != null)
+            if (Check != null && stepsDone == button.Length)
             {
                 Check();
-                GameStatus gameStatusTime = new GameStatusTime(this, form);
                 gameStatusTime.Of();
             }
-            //gameStatusTime = new GameStatusTime(this, form);
-            //if (Check != null)
-            //   {
-            //    Check();
-            //    gameStatusTime.Of();
-            //}
-
         }
         void OnClick(object sender, EventArgs e)
         {
@@ -76,14 +69,17 @@ namespace TicTacToe
                 MessageBox.Show("Выберите свободное поле");
         }
 
-        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode)
+        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode, int length)
         {
             this.form = form;
             button = new Button[size, size];
             step = Xor0Start;
             this.IsCompPlayer = IsCompPlayer;
             Mode = gamemode;
+            this.length = length;
 
+            if (gamemode == 1)
+                gameStatusTime = new GameStatusTime(this, form, length);
             if (IsCompPlayer)
                 player = new ComputerPlayer(this);
             IsWinner = false;
