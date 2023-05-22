@@ -30,7 +30,6 @@ namespace TicTacToe
                     {
                         board.button[i, j].BackColor = Color.FromArgb(200, 200, 200);
                     }
-
                 }
             }
             board.IsWinner = true;
@@ -52,17 +51,15 @@ namespace TicTacToe
         public void CheckerRow(int j, string Xor0)
         {
             int num = 0;
-
-            bool flag = true;
-
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
-                if (board.button[i, j].Text == Xor0 && flag == true)
+                if (board.button[i, j].Text == Xor0 && !board.IsWinner)
                 {
                     num++;
                     if (num == board.button.GetLength(0))
                     {
                         Win(Xor0);
+                        return;
                     }
                 }
                 else
@@ -75,16 +72,15 @@ namespace TicTacToe
         public void CheckerColumn(int j, string Xor0)
         {
             int num = 0;
-            bool flag = true;
-
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
-                if (board.button[j, i].Text == Xor0 && flag == true)
+                if (board.button[j, i].Text == Xor0 && !board.IsWinner)
                 {
                     num++;
                     if (num == board.button.GetLength(0))
                     {
                         Win(Xor0);
+                        return;
                     }
                 }
                 else
@@ -100,7 +96,7 @@ namespace TicTacToe
             int num = 0;
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
-                if (board.button[i, i].Text == Xor0)
+                if (board.button[i, i].Text == Xor0 && !board.IsWinner)
                     num++;
             }
             if (board.button.GetLength(0) == num)
@@ -115,7 +111,7 @@ namespace TicTacToe
             int num = 0;
             for (int i = 0; i < board.button.GetLength(0); i++)
             {
-                if (board.button[i, board.button.GetLength(0) - i - 1].Text == Xor0)
+                if (board.button[i, board.button.GetLength(0) - i - 1].Text == Xor0 && !board.IsWinner)
                     num++;
             }
             if (board.button.GetLength(0) == num)
@@ -141,7 +137,7 @@ namespace TicTacToe
             CheckerDiagonalRightToLeft("X");
             CheckerDiagonalRightToLeft("O");
 
-            if (board.stepsDone == board.button.Length)
+            if (board.stepsDone == board.button.Length && !board.IsWinner)
             {
                 board.IsWinner = true;
                 DialogResult result = MessageBox.Show("Ничья. Сыграть заново?", "", MessageBoxButtons.YesNo);

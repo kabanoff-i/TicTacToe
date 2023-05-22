@@ -153,7 +153,7 @@ namespace TicTacToe
                     button[i, j].Click += new EventHandler(OnClick);// добавление обработчика события
                     button[i, j].Tag = uniqueTag; // присвоение каждому уникального кода
 
-                    button[i, j].Font = new Font(button[i, j].Font.FontFamily, button[i,j].Width/2, FontStyle.Bold);
+                    button[i, j].Font = new Font(button[i, j].Font.FontFamily, button[i,j].Height/2 - 1, FontStyle.Bold);
 
                     uniqueTag++;
                 }
