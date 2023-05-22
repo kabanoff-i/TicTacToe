@@ -44,29 +44,38 @@ namespace TicTacToe
         }
         void OnClick(object sender, EventArgs e)
         {
-            // Заполнить клетку
-            Button b = (Button)sender;
-            if (b.Text == "")
+            try
             {
-                b.Text = step;
-                stepsDone++;
-                // Поменять ход
-                if (step == "X")
+                // Заполнить клетку
+                Button b = (Button)sender;
+                if (b.Text == "")
                 {
-                    step = "O";
+                    b.Text = step;
+                    stepsDone++;
+                    // Поменять ход
+                    if (step == "X")
+                    {
+                        step = "O";
+                    }
+                    else
+                    {
+                        step = "X";
+                    }
+                    OnCheck();// зажигаю событие проверки
+                    if (IsCompPlayer && !IsWinner)
+                    {
+                        player.MakeAMove();
+                    }
                 }
                 else
-                {
-                    step = "X";
-                }
-                OnCheck();// зажигаю событие проверки
-                if (IsCompPlayer && !IsWinner)
-                {
-                    player.MakeAMove();
-                }
+                    throw new FilledCellException("Выберите свободное поле");
             }
-            else
-                MessageBox.Show("Выберите свободное поле");
+            catch (FilledCellException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //else
+            //    MessageBox.Show("Выберите свободное поле");
         }
 
         public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode, int length)
