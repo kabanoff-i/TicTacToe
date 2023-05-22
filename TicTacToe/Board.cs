@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -48,35 +49,81 @@ namespace TicTacToe
             {
                 // Заполнить клетку
                 Button b = (Button)sender;
-                if (b.Text == "")
+                Tuple<int, int> targetButton = FindButton(b);
+                if (IsValidMove(targetButton.Item1, targetButton.Item2, step) || stepsDone < 2)
                 {
-                    b.Text = step;
-                    stepsDone++;
-                    // Поменять ход
-                    if (step == "X")
+                    if (b.Text == "")
                     {
-                        step = "O";
+                        b.Text = step;
+                        stepsDone++;
+                        // Поменять ход
+                        if (step == "X")
+                        {
+                            step = "O";
+                        }
+                        else
+                        {
+                            step = "X";
+                        }
+                        OnCheck();// зажигаю событие проверки
+                        if (IsCompPlayer && !IsWinner)
+                        {
+                            player.MakeAMove();
+                        }
                     }
                     else
-                    {
-                        step = "X";
-                    }
-                    OnCheck();// зажигаю событие проверки
-                    if (IsCompPlayer && !IsWinner)
-                    {
-                        player.MakeAMove();
-                    }
+                        throw new FilledCellException("Выберите свободное поле");
                 }
                 else
-                    throw new FilledCellException("Выберите свободное поле");
+                    throw new OutOf5RangeCellsException("Выберите поле в пределах 5 ячеек от уже заполненной вашим ходом");
             }
-            catch (FilledCellException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+        }
+        Tuple<int, int> FindButton(Button targetButton)
+        {
+            for (int i = 0; i < button.GetLength(0); i++)
+            {
+                for (int j = 0; j < button.GetLength(1); j++)
+                {
+                    if (button[i, j].Equals(targetButton))
+                    {
+                        return Tuple.Create(i, j);
+                    }
+                }
+            }
+            return null;
+        }
+        public bool IsValidMove(int rowIndex, int columnIndex, string symbol)
+        {
+            // Проверка всех направлений от выбранной кнопки
+            for (int i = rowIndex - 5; i <= rowIndex + 5; i++)
+            {
+                for (int j = columnIndex - 5; j <= columnIndex + 5; j++)
+                {
+                    // Проверка границ массива
+                    if (i >= 0 && i < button.GetLength(0) && j >= 0 && j < button.GetLength(1))
+                    {
+                        // Проверка наличия отмеченной кнопки с тем же символом
+                        if (button[i, j].Text == symbol)
+                        {
+                            // Проверка расстояния до отмеченной кнопки
+                            int distance = Math.Abs(rowIndex - i) + Math.Abs(columnIndex - j);
+                            if (distance <= 5)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
-        public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode, int length)
+            public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode, int length)
         {
             this.form = form;
             button = new Button[size, size];

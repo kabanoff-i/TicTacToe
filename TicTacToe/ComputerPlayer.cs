@@ -16,27 +16,30 @@ namespace TicTacToe
             Random r = new Random();
             int row;
             int column;
+            bool moveDone = false;
             do
             {
                 row = r.Next(board.button.GetLength(0));
                 column = r.Next(board.button.GetLength(0));
-                if (board.button[row, column].Text == "")
-                {
-                    board.button[row, column].Text = board.step;
-                    board.stepsDone++;
-                    // Поменять ход
-                    if (board.step == "X")
+                if (board.IsValidMove(row, column, board.step) || board.stepsDone < 2)
+                    if (board.button[row, column].Text == "")
                     {
-                        board.step = "O";
+                        board.button[row, column].Text = board.step;
+                        board.stepsDone++;
+                        // Поменять ход
+                        if (board.step == "X")
+                        {
+                            board.step = "O";
+                        }
+                        else
+                        {
+                            board.step = "X";
+                        }
+                        board.OnCheck();// зажигаю событие проверки
+                        moveDone = true;
+                        break;
                     }
-                    else
-                    {
-                        board.step = "X";
-                    }
-                    board.OnCheck();// зажигаю событие проверки
-                    break;
-                }
-            } while (board.button[row, column].Text != "");
+            } while (!moveDone);
         }
         public ComputerPlayer(Board board)
         {
