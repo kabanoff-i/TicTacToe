@@ -74,8 +74,6 @@ namespace TicTacToe
             {
                 MessageBox.Show(ex.Message);
             }
-            //else
-            //    MessageBox.Show("Выберите свободное поле");
         }
 
         public Board(int size, string Xor0Start,bool IsCompPlayer, Panel panel1, Form1 form, int gamemode, int length)
